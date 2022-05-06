@@ -1,0 +1,1 @@
+web: gunicorn ScamBot.wsgi --log-file -
