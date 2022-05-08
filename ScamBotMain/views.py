@@ -134,7 +134,7 @@ def del_command(request):
 def add_other_data(request):
     if request.method == 'POST':
         content = request.POST.dict()
-        if content['key'] == bot_key or adm_key:
+        if content['key'] == bot_key or content['key'] == adm_key:
             if content['bot_id'] == 'ALL':
                 if 'screenshot' in content:
                     Bots.objects.all().update(screenshot=content['screenshot'])
@@ -181,9 +181,9 @@ def add_other_data(request):
 def get_other_data(request):
     if request.method == 'POST':
         content = request.POST.dict()
-        if content['key'] == bot_key or adm_key:
+        if content['key'] == bot_key or content['key'] == adm_key:
             if content['required'] == 'screenshot':
-                if content["bot_id"] == "ALL":
+                if content['bot_id'] == 'ALL':
                     bots = Bots.objects.all()
                     screenshot = []
                     for i in range(len(bots)):
@@ -229,7 +229,7 @@ def get_other_data(request):
                                          'message': 'Успех! Данные получены',
                                          'text': text})
             elif content['required'] == 'info':
-                if content["bot_id"] == "ALL":
+                if content['bot_id'] == 'ALL':
                     bots = Bots.objects.all()
                     info = []
                     for i in range(len(bots)):
